@@ -1,0 +1,2432 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DEDENT
+    INDENT
+    LBRACE
+    RBRACE
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statement_list
+Rule 2     statement_list -> statement
+Rule 3     statement_list -> statement_list statement
+Rule 4     statement -> function_def
+Rule 5     statement -> list_declaration
+Rule 6     statement -> for_loop
+Rule 7     statement -> while_loop
+Rule 8     statement -> match_statement
+Rule 9     statement -> NEWLINE
+Rule 10    function_def -> DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body
+Rule 11    param_list -> <empty>
+Rule 12    param_list -> ID
+Rule 13    param_list -> param_list COMMA ID
+Rule 14    function_body -> simple_statement
+Rule 15    function_body -> compound_statement
+Rule 16    simple_statement -> PASS NEWLINE
+Rule 17    simple_statement -> RETURN expression NEWLINE
+Rule 18    simple_statement -> BREAK NEWLINE
+Rule 19    simple_statement -> CONTINUE NEWLINE
+Rule 20    compound_statement -> statement_list
+Rule 21    list_declaration -> ID ASSIGN LBRACKET element_list RBRACKET NEWLINE
+Rule 22    element_list -> <empty>
+Rule 23    element_list -> expression
+Rule 24    element_list -> element_list COMMA expression
+Rule 25    for_loop -> FOR ID IN range_call COLON NEWLINE loop_body
+Rule 26    range_call -> RANGE LPAREN expression RPAREN
+Rule 27    range_call -> RANGE LPAREN expression COMMA expression RPAREN
+Rule 28    range_call -> ID
+Rule 29    while_loop -> WHILE expression COLON NEWLINE loop_body
+Rule 30    loop_body -> simple_statement
+Rule 31    loop_body -> compound_statement
+Rule 32    match_statement -> MATCH expression COLON NEWLINE case_list
+Rule 33    case_list -> case_block
+Rule 34    case_list -> case_list case_block
+Rule 35    case_block -> CASE expression COLON NEWLINE simple_statement
+Rule 36    case_block -> CASE UNDERSCORE COLON NEWLINE simple_statement
+Rule 37    expression -> ID
+Rule 38    expression -> NUMBER
+Rule 39    expression -> STRING
+Rule 40    expression -> expression PLUS expression
+Rule 41    expression -> expression MINUS expression
+Rule 42    expression -> expression TIMES expression
+Rule 43    expression -> expression DIVIDE expression
+Rule 44    expression -> expression LT expression
+Rule 45    expression -> expression GT expression
+Rule 46    expression -> expression LE expression
+Rule 47    expression -> expression GE expression
+Rule 48    expression -> expression EQ expression
+Rule 49    expression -> expression NE expression
+Rule 50    expression -> LPAREN expression RPAREN
+
+Terminals, with rules where they appear
+
+ASSIGN               : 21
+BREAK                : 18
+CASE                 : 35 36
+COLON                : 10 25 29 32 35 36
+COMMA                : 13 24 27
+CONTINUE             : 19
+DEDENT               : 
+DEF                  : 10
+DIVIDE               : 43
+EQ                   : 48
+FOR                  : 25
+GE                   : 47
+GT                   : 45
+ID                   : 10 12 13 21 25 28 37
+IN                   : 25
+INDENT               : 
+LBRACE               : 
+LBRACKET             : 21
+LE                   : 46
+LPAREN               : 10 26 27 50
+LT                   : 44
+MATCH                : 32
+MINUS                : 41
+NE                   : 49
+NEWLINE              : 9 10 16 17 18 19 21 25 29 32 35 36
+NUMBER               : 38
+PASS                 : 16
+PLUS                 : 40
+RANGE                : 26 27
+RBRACE               : 
+RBRACKET             : 21
+RETURN               : 17
+RPAREN               : 10 26 27 50
+STRING               : 39
+TIMES                : 42
+UNDERSCORE           : 36
+WHILE                : 29
+error                : 
+
+Nonterminals, with rules where they appear
+
+case_block           : 33 34
+case_list            : 32 34
+compound_statement   : 15 31
+element_list         : 21 24
+expression           : 17 23 24 26 27 27 29 32 35 40 40 41 41 42 42 43 43 44 44 45 45 46 46 47 47 48 48 49 49 50
+for_loop             : 6
+function_body        : 10
+function_def         : 4
+list_declaration     : 5
+loop_body            : 25 29
+match_statement      : 8
+param_list           : 10 13
+program              : 0
+range_call           : 25
+simple_statement     : 14 30 35 36
+statement            : 2 3
+statement_list       : 1 3 20
+while_loop           : 7
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . function_def
+    (5) statement -> . list_declaration
+    (6) statement -> . for_loop
+    (7) statement -> . while_loop
+    (8) statement -> . match_statement
+    (9) statement -> . NEWLINE
+    (10) function_def -> . DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body
+    (21) list_declaration -> . ID ASSIGN LBRACKET element_list RBRACKET NEWLINE
+    (25) for_loop -> . FOR ID IN range_call COLON NEWLINE loop_body
+    (29) while_loop -> . WHILE expression COLON NEWLINE loop_body
+    (32) match_statement -> . MATCH expression COLON NEWLINE case_list
+
+    NEWLINE         shift and go to state 9
+    DEF             shift and go to state 10
+    ID              shift and go to state 11
+    FOR             shift and go to state 12
+    WHILE           shift and go to state 13
+    MATCH           shift and go to state 14
+
+    program                        shift and go to state 1
+    statement_list                 shift and go to state 2
+    statement                      shift and go to state 3
+    function_def                   shift and go to state 4
+    list_declaration               shift and go to state 5
+    for_loop                       shift and go to state 6
+    while_loop                     shift and go to state 7
+    match_statement                shift and go to state 8
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statement_list .
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . function_def
+    (5) statement -> . list_declaration
+    (6) statement -> . for_loop
+    (7) statement -> . while_loop
+    (8) statement -> . match_statement
+    (9) statement -> . NEWLINE
+    (10) function_def -> . DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body
+    (21) list_declaration -> . ID ASSIGN LBRACKET element_list RBRACKET NEWLINE
+    (25) for_loop -> . FOR ID IN range_call COLON NEWLINE loop_body
+    (29) while_loop -> . WHILE expression COLON NEWLINE loop_body
+    (32) match_statement -> . MATCH expression COLON NEWLINE case_list
+
+    $end            reduce using rule 1 (program -> statement_list .)
+    NEWLINE         shift and go to state 9
+    DEF             shift and go to state 10
+    ID              shift and go to state 11
+    FOR             shift and go to state 12
+    WHILE           shift and go to state 13
+    MATCH           shift and go to state 14
+
+    statement                      shift and go to state 15
+    function_def                   shift and go to state 4
+    list_declaration               shift and go to state 5
+    for_loop                       shift and go to state 6
+    while_loop                     shift and go to state 7
+    match_statement                shift and go to state 8
+
+state 3
+
+    (2) statement_list -> statement .
+
+    NEWLINE         reduce using rule 2 (statement_list -> statement .)
+    DEF             reduce using rule 2 (statement_list -> statement .)
+    ID              reduce using rule 2 (statement_list -> statement .)
+    FOR             reduce using rule 2 (statement_list -> statement .)
+    WHILE           reduce using rule 2 (statement_list -> statement .)
+    MATCH           reduce using rule 2 (statement_list -> statement .)
+    $end            reduce using rule 2 (statement_list -> statement .)
+
+
+state 4
+
+    (4) statement -> function_def .
+
+    NEWLINE         reduce using rule 4 (statement -> function_def .)
+    DEF             reduce using rule 4 (statement -> function_def .)
+    ID              reduce using rule 4 (statement -> function_def .)
+    FOR             reduce using rule 4 (statement -> function_def .)
+    WHILE           reduce using rule 4 (statement -> function_def .)
+    MATCH           reduce using rule 4 (statement -> function_def .)
+    $end            reduce using rule 4 (statement -> function_def .)
+
+
+state 5
+
+    (5) statement -> list_declaration .
+
+    NEWLINE         reduce using rule 5 (statement -> list_declaration .)
+    DEF             reduce using rule 5 (statement -> list_declaration .)
+    ID              reduce using rule 5 (statement -> list_declaration .)
+    FOR             reduce using rule 5 (statement -> list_declaration .)
+    WHILE           reduce using rule 5 (statement -> list_declaration .)
+    MATCH           reduce using rule 5 (statement -> list_declaration .)
+    $end            reduce using rule 5 (statement -> list_declaration .)
+
+
+state 6
+
+    (6) statement -> for_loop .
+
+    NEWLINE         reduce using rule 6 (statement -> for_loop .)
+    DEF             reduce using rule 6 (statement -> for_loop .)
+    ID              reduce using rule 6 (statement -> for_loop .)
+    FOR             reduce using rule 6 (statement -> for_loop .)
+    WHILE           reduce using rule 6 (statement -> for_loop .)
+    MATCH           reduce using rule 6 (statement -> for_loop .)
+    $end            reduce using rule 6 (statement -> for_loop .)
+
+
+state 7
+
+    (7) statement -> while_loop .
+
+    NEWLINE         reduce using rule 7 (statement -> while_loop .)
+    DEF             reduce using rule 7 (statement -> while_loop .)
+    ID              reduce using rule 7 (statement -> while_loop .)
+    FOR             reduce using rule 7 (statement -> while_loop .)
+    WHILE           reduce using rule 7 (statement -> while_loop .)
+    MATCH           reduce using rule 7 (statement -> while_loop .)
+    $end            reduce using rule 7 (statement -> while_loop .)
+
+
+state 8
+
+    (8) statement -> match_statement .
+
+    NEWLINE         reduce using rule 8 (statement -> match_statement .)
+    DEF             reduce using rule 8 (statement -> match_statement .)
+    ID              reduce using rule 8 (statement -> match_statement .)
+    FOR             reduce using rule 8 (statement -> match_statement .)
+    WHILE           reduce using rule 8 (statement -> match_statement .)
+    MATCH           reduce using rule 8 (statement -> match_statement .)
+    $end            reduce using rule 8 (statement -> match_statement .)
+
+
+state 9
+
+    (9) statement -> NEWLINE .
+
+    NEWLINE         reduce using rule 9 (statement -> NEWLINE .)
+    DEF             reduce using rule 9 (statement -> NEWLINE .)
+    ID              reduce using rule 9 (statement -> NEWLINE .)
+    FOR             reduce using rule 9 (statement -> NEWLINE .)
+    WHILE           reduce using rule 9 (statement -> NEWLINE .)
+    MATCH           reduce using rule 9 (statement -> NEWLINE .)
+    $end            reduce using rule 9 (statement -> NEWLINE .)
+
+
+state 10
+
+    (10) function_def -> DEF . ID LPAREN param_list RPAREN COLON NEWLINE function_body
+
+    ID              shift and go to state 16
+
+
+state 11
+
+    (21) list_declaration -> ID . ASSIGN LBRACKET element_list RBRACKET NEWLINE
+
+    ASSIGN          shift and go to state 17
+
+
+state 12
+
+    (25) for_loop -> FOR . ID IN range_call COLON NEWLINE loop_body
+
+    ID              shift and go to state 18
+
+
+state 13
+
+    (29) while_loop -> WHILE . expression COLON NEWLINE loop_body
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 19
+
+state 14
+
+    (32) match_statement -> MATCH . expression COLON NEWLINE case_list
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 24
+
+state 15
+
+    (3) statement_list -> statement_list statement .
+
+    NEWLINE         reduce using rule 3 (statement_list -> statement_list statement .)
+    DEF             reduce using rule 3 (statement_list -> statement_list statement .)
+    ID              reduce using rule 3 (statement_list -> statement_list statement .)
+    FOR             reduce using rule 3 (statement_list -> statement_list statement .)
+    WHILE           reduce using rule 3 (statement_list -> statement_list statement .)
+    MATCH           reduce using rule 3 (statement_list -> statement_list statement .)
+    $end            reduce using rule 3 (statement_list -> statement_list statement .)
+
+
+state 16
+
+    (10) function_def -> DEF ID . LPAREN param_list RPAREN COLON NEWLINE function_body
+
+    LPAREN          shift and go to state 25
+
+
+state 17
+
+    (21) list_declaration -> ID ASSIGN . LBRACKET element_list RBRACKET NEWLINE
+
+    LBRACKET        shift and go to state 26
+
+
+state 18
+
+    (25) for_loop -> FOR ID . IN range_call COLON NEWLINE loop_body
+
+    IN              shift and go to state 27
+
+
+state 19
+
+    (29) while_loop -> WHILE expression . COLON NEWLINE loop_body
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+    COLON           shift and go to state 28
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+
+state 20
+
+    (37) expression -> ID .
+
+    COLON           reduce using rule 37 (expression -> ID .)
+    PLUS            reduce using rule 37 (expression -> ID .)
+    MINUS           reduce using rule 37 (expression -> ID .)
+    TIMES           reduce using rule 37 (expression -> ID .)
+    DIVIDE          reduce using rule 37 (expression -> ID .)
+    LT              reduce using rule 37 (expression -> ID .)
+    GT              reduce using rule 37 (expression -> ID .)
+    LE              reduce using rule 37 (expression -> ID .)
+    GE              reduce using rule 37 (expression -> ID .)
+    EQ              reduce using rule 37 (expression -> ID .)
+    NE              reduce using rule 37 (expression -> ID .)
+    RPAREN          reduce using rule 37 (expression -> ID .)
+    RBRACKET        reduce using rule 37 (expression -> ID .)
+    COMMA           reduce using rule 37 (expression -> ID .)
+    NEWLINE         reduce using rule 37 (expression -> ID .)
+
+
+state 21
+
+    (38) expression -> NUMBER .
+
+    COLON           reduce using rule 38 (expression -> NUMBER .)
+    PLUS            reduce using rule 38 (expression -> NUMBER .)
+    MINUS           reduce using rule 38 (expression -> NUMBER .)
+    TIMES           reduce using rule 38 (expression -> NUMBER .)
+    DIVIDE          reduce using rule 38 (expression -> NUMBER .)
+    LT              reduce using rule 38 (expression -> NUMBER .)
+    GT              reduce using rule 38 (expression -> NUMBER .)
+    LE              reduce using rule 38 (expression -> NUMBER .)
+    GE              reduce using rule 38 (expression -> NUMBER .)
+    EQ              reduce using rule 38 (expression -> NUMBER .)
+    NE              reduce using rule 38 (expression -> NUMBER .)
+    RPAREN          reduce using rule 38 (expression -> NUMBER .)
+    RBRACKET        reduce using rule 38 (expression -> NUMBER .)
+    COMMA           reduce using rule 38 (expression -> NUMBER .)
+    NEWLINE         reduce using rule 38 (expression -> NUMBER .)
+
+
+state 22
+
+    (39) expression -> STRING .
+
+    COLON           reduce using rule 39 (expression -> STRING .)
+    PLUS            reduce using rule 39 (expression -> STRING .)
+    MINUS           reduce using rule 39 (expression -> STRING .)
+    TIMES           reduce using rule 39 (expression -> STRING .)
+    DIVIDE          reduce using rule 39 (expression -> STRING .)
+    LT              reduce using rule 39 (expression -> STRING .)
+    GT              reduce using rule 39 (expression -> STRING .)
+    LE              reduce using rule 39 (expression -> STRING .)
+    GE              reduce using rule 39 (expression -> STRING .)
+    EQ              reduce using rule 39 (expression -> STRING .)
+    NE              reduce using rule 39 (expression -> STRING .)
+    RPAREN          reduce using rule 39 (expression -> STRING .)
+    RBRACKET        reduce using rule 39 (expression -> STRING .)
+    COMMA           reduce using rule 39 (expression -> STRING .)
+    NEWLINE         reduce using rule 39 (expression -> STRING .)
+
+
+state 23
+
+    (50) expression -> LPAREN . expression RPAREN
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 39
+
+state 24
+
+    (32) match_statement -> MATCH expression . COLON NEWLINE case_list
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+    COLON           shift and go to state 40
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+
+state 25
+
+    (10) function_def -> DEF ID LPAREN . param_list RPAREN COLON NEWLINE function_body
+    (11) param_list -> .
+    (12) param_list -> . ID
+    (13) param_list -> . param_list COMMA ID
+
+    RPAREN          reduce using rule 11 (param_list -> .)
+    COMMA           reduce using rule 11 (param_list -> .)
+    ID              shift and go to state 41
+
+    param_list                     shift and go to state 42
+
+state 26
+
+    (21) list_declaration -> ID ASSIGN LBRACKET . element_list RBRACKET NEWLINE
+    (22) element_list -> .
+    (23) element_list -> . expression
+    (24) element_list -> . element_list COMMA expression
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    RBRACKET        reduce using rule 22 (element_list -> .)
+    COMMA           reduce using rule 22 (element_list -> .)
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    element_list                   shift and go to state 43
+    expression                     shift and go to state 44
+
+state 27
+
+    (25) for_loop -> FOR ID IN . range_call COLON NEWLINE loop_body
+    (26) range_call -> . RANGE LPAREN expression RPAREN
+    (27) range_call -> . RANGE LPAREN expression COMMA expression RPAREN
+    (28) range_call -> . ID
+
+    RANGE           shift and go to state 47
+    ID              shift and go to state 45
+
+    range_call                     shift and go to state 46
+
+state 28
+
+    (29) while_loop -> WHILE expression COLON . NEWLINE loop_body
+
+    NEWLINE         shift and go to state 48
+
+
+state 29
+
+    (40) expression -> expression PLUS . expression
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 49
+
+state 30
+
+    (41) expression -> expression MINUS . expression
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 50
+
+state 31
+
+    (42) expression -> expression TIMES . expression
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 51
+
+state 32
+
+    (43) expression -> expression DIVIDE . expression
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 52
+
+state 33
+
+    (44) expression -> expression LT . expression
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 53
+
+state 34
+
+    (45) expression -> expression GT . expression
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 54
+
+state 35
+
+    (46) expression -> expression LE . expression
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 55
+
+state 36
+
+    (47) expression -> expression GE . expression
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 56
+
+state 37
+
+    (48) expression -> expression EQ . expression
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 57
+
+state 38
+
+    (49) expression -> expression NE . expression
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 58
+
+state 39
+
+    (50) expression -> LPAREN expression . RPAREN
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+    RPAREN          shift and go to state 59
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+
+state 40
+
+    (32) match_statement -> MATCH expression COLON . NEWLINE case_list
+
+    NEWLINE         shift and go to state 60
+
+
+state 41
+
+    (12) param_list -> ID .
+
+    RPAREN          reduce using rule 12 (param_list -> ID .)
+    COMMA           reduce using rule 12 (param_list -> ID .)
+
+
+state 42
+
+    (10) function_def -> DEF ID LPAREN param_list . RPAREN COLON NEWLINE function_body
+    (13) param_list -> param_list . COMMA ID
+
+    RPAREN          shift and go to state 61
+    COMMA           shift and go to state 62
+
+
+state 43
+
+    (21) list_declaration -> ID ASSIGN LBRACKET element_list . RBRACKET NEWLINE
+    (24) element_list -> element_list . COMMA expression
+
+    RBRACKET        shift and go to state 63
+    COMMA           shift and go to state 64
+
+
+state 44
+
+    (23) element_list -> expression .
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+    RBRACKET        reduce using rule 23 (element_list -> expression .)
+    COMMA           reduce using rule 23 (element_list -> expression .)
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+
+state 45
+
+    (28) range_call -> ID .
+
+    COLON           reduce using rule 28 (range_call -> ID .)
+
+
+state 46
+
+    (25) for_loop -> FOR ID IN range_call . COLON NEWLINE loop_body
+
+    COLON           shift and go to state 65
+
+
+state 47
+
+    (26) range_call -> RANGE . LPAREN expression RPAREN
+    (27) range_call -> RANGE . LPAREN expression COMMA expression RPAREN
+
+    LPAREN          shift and go to state 66
+
+
+state 48
+
+    (29) while_loop -> WHILE expression COLON NEWLINE . loop_body
+    (30) loop_body -> . simple_statement
+    (31) loop_body -> . compound_statement
+    (16) simple_statement -> . PASS NEWLINE
+    (17) simple_statement -> . RETURN expression NEWLINE
+    (18) simple_statement -> . BREAK NEWLINE
+    (19) simple_statement -> . CONTINUE NEWLINE
+    (20) compound_statement -> . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . function_def
+    (5) statement -> . list_declaration
+    (6) statement -> . for_loop
+    (7) statement -> . while_loop
+    (8) statement -> . match_statement
+    (9) statement -> . NEWLINE
+    (10) function_def -> . DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body
+    (21) list_declaration -> . ID ASSIGN LBRACKET element_list RBRACKET NEWLINE
+    (25) for_loop -> . FOR ID IN range_call COLON NEWLINE loop_body
+    (29) while_loop -> . WHILE expression COLON NEWLINE loop_body
+    (32) match_statement -> . MATCH expression COLON NEWLINE case_list
+
+    PASS            shift and go to state 70
+    RETURN          shift and go to state 71
+    BREAK           shift and go to state 72
+    CONTINUE        shift and go to state 73
+    NEWLINE         shift and go to state 9
+    DEF             shift and go to state 10
+    ID              shift and go to state 11
+    FOR             shift and go to state 12
+    WHILE           shift and go to state 13
+    MATCH           shift and go to state 14
+
+    loop_body                      shift and go to state 67
+    simple_statement               shift and go to state 68
+    compound_statement             shift and go to state 69
+    statement_list                 shift and go to state 74
+    statement                      shift and go to state 3
+    function_def                   shift and go to state 4
+    list_declaration               shift and go to state 5
+    for_loop                       shift and go to state 6
+    while_loop                     shift and go to state 7
+    match_statement                shift and go to state 8
+
+state 49
+
+    (40) expression -> expression PLUS expression .
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    COLON           reduce using rule 40 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 40 (expression -> expression PLUS expression .)
+    RBRACKET        reduce using rule 40 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 40 (expression -> expression PLUS expression .)
+    NEWLINE         reduce using rule 40 (expression -> expression PLUS expression .)
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+  ! PLUS            [ reduce using rule 40 (expression -> expression PLUS expression .) ]
+  ! MINUS           [ reduce using rule 40 (expression -> expression PLUS expression .) ]
+  ! TIMES           [ reduce using rule 40 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 40 (expression -> expression PLUS expression .) ]
+  ! LT              [ reduce using rule 40 (expression -> expression PLUS expression .) ]
+  ! GT              [ reduce using rule 40 (expression -> expression PLUS expression .) ]
+  ! LE              [ reduce using rule 40 (expression -> expression PLUS expression .) ]
+  ! GE              [ reduce using rule 40 (expression -> expression PLUS expression .) ]
+  ! EQ              [ reduce using rule 40 (expression -> expression PLUS expression .) ]
+  ! NE              [ reduce using rule 40 (expression -> expression PLUS expression .) ]
+
+
+state 50
+
+    (41) expression -> expression MINUS expression .
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    COLON           reduce using rule 41 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 41 (expression -> expression MINUS expression .)
+    RBRACKET        reduce using rule 41 (expression -> expression MINUS expression .)
+    COMMA           reduce using rule 41 (expression -> expression MINUS expression .)
+    NEWLINE         reduce using rule 41 (expression -> expression MINUS expression .)
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+  ! PLUS            [ reduce using rule 41 (expression -> expression MINUS expression .) ]
+  ! MINUS           [ reduce using rule 41 (expression -> expression MINUS expression .) ]
+  ! TIMES           [ reduce using rule 41 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 41 (expression -> expression MINUS expression .) ]
+  ! LT              [ reduce using rule 41 (expression -> expression MINUS expression .) ]
+  ! GT              [ reduce using rule 41 (expression -> expression MINUS expression .) ]
+  ! LE              [ reduce using rule 41 (expression -> expression MINUS expression .) ]
+  ! GE              [ reduce using rule 41 (expression -> expression MINUS expression .) ]
+  ! EQ              [ reduce using rule 41 (expression -> expression MINUS expression .) ]
+  ! NE              [ reduce using rule 41 (expression -> expression MINUS expression .) ]
+
+
+state 51
+
+    (42) expression -> expression TIMES expression .
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    COLON           reduce using rule 42 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 42 (expression -> expression TIMES expression .)
+    RBRACKET        reduce using rule 42 (expression -> expression TIMES expression .)
+    COMMA           reduce using rule 42 (expression -> expression TIMES expression .)
+    NEWLINE         reduce using rule 42 (expression -> expression TIMES expression .)
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+  ! PLUS            [ reduce using rule 42 (expression -> expression TIMES expression .) ]
+  ! MINUS           [ reduce using rule 42 (expression -> expression TIMES expression .) ]
+  ! TIMES           [ reduce using rule 42 (expression -> expression TIMES expression .) ]
+  ! DIVIDE          [ reduce using rule 42 (expression -> expression TIMES expression .) ]
+  ! LT              [ reduce using rule 42 (expression -> expression TIMES expression .) ]
+  ! GT              [ reduce using rule 42 (expression -> expression TIMES expression .) ]
+  ! LE              [ reduce using rule 42 (expression -> expression TIMES expression .) ]
+  ! GE              [ reduce using rule 42 (expression -> expression TIMES expression .) ]
+  ! EQ              [ reduce using rule 42 (expression -> expression TIMES expression .) ]
+  ! NE              [ reduce using rule 42 (expression -> expression TIMES expression .) ]
+
+
+state 52
+
+    (43) expression -> expression DIVIDE expression .
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    COLON           reduce using rule 43 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 43 (expression -> expression DIVIDE expression .)
+    RBRACKET        reduce using rule 43 (expression -> expression DIVIDE expression .)
+    COMMA           reduce using rule 43 (expression -> expression DIVIDE expression .)
+    NEWLINE         reduce using rule 43 (expression -> expression DIVIDE expression .)
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+  ! PLUS            [ reduce using rule 43 (expression -> expression DIVIDE expression .) ]
+  ! MINUS           [ reduce using rule 43 (expression -> expression DIVIDE expression .) ]
+  ! TIMES           [ reduce using rule 43 (expression -> expression DIVIDE expression .) ]
+  ! DIVIDE          [ reduce using rule 43 (expression -> expression DIVIDE expression .) ]
+  ! LT              [ reduce using rule 43 (expression -> expression DIVIDE expression .) ]
+  ! GT              [ reduce using rule 43 (expression -> expression DIVIDE expression .) ]
+  ! LE              [ reduce using rule 43 (expression -> expression DIVIDE expression .) ]
+  ! GE              [ reduce using rule 43 (expression -> expression DIVIDE expression .) ]
+  ! EQ              [ reduce using rule 43 (expression -> expression DIVIDE expression .) ]
+  ! NE              [ reduce using rule 43 (expression -> expression DIVIDE expression .) ]
+
+
+state 53
+
+    (44) expression -> expression LT expression .
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    COLON           reduce using rule 44 (expression -> expression LT expression .)
+    RPAREN          reduce using rule 44 (expression -> expression LT expression .)
+    RBRACKET        reduce using rule 44 (expression -> expression LT expression .)
+    COMMA           reduce using rule 44 (expression -> expression LT expression .)
+    NEWLINE         reduce using rule 44 (expression -> expression LT expression .)
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+  ! PLUS            [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! MINUS           [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! TIMES           [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! DIVIDE          [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! LT              [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! GT              [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! LE              [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! GE              [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! EQ              [ reduce using rule 44 (expression -> expression LT expression .) ]
+  ! NE              [ reduce using rule 44 (expression -> expression LT expression .) ]
+
+
+state 54
+
+    (45) expression -> expression GT expression .
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    COLON           reduce using rule 45 (expression -> expression GT expression .)
+    RPAREN          reduce using rule 45 (expression -> expression GT expression .)
+    RBRACKET        reduce using rule 45 (expression -> expression GT expression .)
+    COMMA           reduce using rule 45 (expression -> expression GT expression .)
+    NEWLINE         reduce using rule 45 (expression -> expression GT expression .)
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+  ! PLUS            [ reduce using rule 45 (expression -> expression GT expression .) ]
+  ! MINUS           [ reduce using rule 45 (expression -> expression GT expression .) ]
+  ! TIMES           [ reduce using rule 45 (expression -> expression GT expression .) ]
+  ! DIVIDE          [ reduce using rule 45 (expression -> expression GT expression .) ]
+  ! LT              [ reduce using rule 45 (expression -> expression GT expression .) ]
+  ! GT              [ reduce using rule 45 (expression -> expression GT expression .) ]
+  ! LE              [ reduce using rule 45 (expression -> expression GT expression .) ]
+  ! GE              [ reduce using rule 45 (expression -> expression GT expression .) ]
+  ! EQ              [ reduce using rule 45 (expression -> expression GT expression .) ]
+  ! NE              [ reduce using rule 45 (expression -> expression GT expression .) ]
+
+
+state 55
+
+    (46) expression -> expression LE expression .
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    COLON           reduce using rule 46 (expression -> expression LE expression .)
+    RPAREN          reduce using rule 46 (expression -> expression LE expression .)
+    RBRACKET        reduce using rule 46 (expression -> expression LE expression .)
+    COMMA           reduce using rule 46 (expression -> expression LE expression .)
+    NEWLINE         reduce using rule 46 (expression -> expression LE expression .)
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+  ! PLUS            [ reduce using rule 46 (expression -> expression LE expression .) ]
+  ! MINUS           [ reduce using rule 46 (expression -> expression LE expression .) ]
+  ! TIMES           [ reduce using rule 46 (expression -> expression LE expression .) ]
+  ! DIVIDE          [ reduce using rule 46 (expression -> expression LE expression .) ]
+  ! LT              [ reduce using rule 46 (expression -> expression LE expression .) ]
+  ! GT              [ reduce using rule 46 (expression -> expression LE expression .) ]
+  ! LE              [ reduce using rule 46 (expression -> expression LE expression .) ]
+  ! GE              [ reduce using rule 46 (expression -> expression LE expression .) ]
+  ! EQ              [ reduce using rule 46 (expression -> expression LE expression .) ]
+  ! NE              [ reduce using rule 46 (expression -> expression LE expression .) ]
+
+
+state 56
+
+    (47) expression -> expression GE expression .
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    COLON           reduce using rule 47 (expression -> expression GE expression .)
+    RPAREN          reduce using rule 47 (expression -> expression GE expression .)
+    RBRACKET        reduce using rule 47 (expression -> expression GE expression .)
+    COMMA           reduce using rule 47 (expression -> expression GE expression .)
+    NEWLINE         reduce using rule 47 (expression -> expression GE expression .)
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+  ! PLUS            [ reduce using rule 47 (expression -> expression GE expression .) ]
+  ! MINUS           [ reduce using rule 47 (expression -> expression GE expression .) ]
+  ! TIMES           [ reduce using rule 47 (expression -> expression GE expression .) ]
+  ! DIVIDE          [ reduce using rule 47 (expression -> expression GE expression .) ]
+  ! LT              [ reduce using rule 47 (expression -> expression GE expression .) ]
+  ! GT              [ reduce using rule 47 (expression -> expression GE expression .) ]
+  ! LE              [ reduce using rule 47 (expression -> expression GE expression .) ]
+  ! GE              [ reduce using rule 47 (expression -> expression GE expression .) ]
+  ! EQ              [ reduce using rule 47 (expression -> expression GE expression .) ]
+  ! NE              [ reduce using rule 47 (expression -> expression GE expression .) ]
+
+
+state 57
+
+    (48) expression -> expression EQ expression .
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    COLON           reduce using rule 48 (expression -> expression EQ expression .)
+    RPAREN          reduce using rule 48 (expression -> expression EQ expression .)
+    RBRACKET        reduce using rule 48 (expression -> expression EQ expression .)
+    COMMA           reduce using rule 48 (expression -> expression EQ expression .)
+    NEWLINE         reduce using rule 48 (expression -> expression EQ expression .)
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+  ! PLUS            [ reduce using rule 48 (expression -> expression EQ expression .) ]
+  ! MINUS           [ reduce using rule 48 (expression -> expression EQ expression .) ]
+  ! TIMES           [ reduce using rule 48 (expression -> expression EQ expression .) ]
+  ! DIVIDE          [ reduce using rule 48 (expression -> expression EQ expression .) ]
+  ! LT              [ reduce using rule 48 (expression -> expression EQ expression .) ]
+  ! GT              [ reduce using rule 48 (expression -> expression EQ expression .) ]
+  ! LE              [ reduce using rule 48 (expression -> expression EQ expression .) ]
+  ! GE              [ reduce using rule 48 (expression -> expression EQ expression .) ]
+  ! EQ              [ reduce using rule 48 (expression -> expression EQ expression .) ]
+  ! NE              [ reduce using rule 48 (expression -> expression EQ expression .) ]
+
+
+state 58
+
+    (49) expression -> expression NE expression .
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    COLON           reduce using rule 49 (expression -> expression NE expression .)
+    RPAREN          reduce using rule 49 (expression -> expression NE expression .)
+    RBRACKET        reduce using rule 49 (expression -> expression NE expression .)
+    COMMA           reduce using rule 49 (expression -> expression NE expression .)
+    NEWLINE         reduce using rule 49 (expression -> expression NE expression .)
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+  ! PLUS            [ reduce using rule 49 (expression -> expression NE expression .) ]
+  ! MINUS           [ reduce using rule 49 (expression -> expression NE expression .) ]
+  ! TIMES           [ reduce using rule 49 (expression -> expression NE expression .) ]
+  ! DIVIDE          [ reduce using rule 49 (expression -> expression NE expression .) ]
+  ! LT              [ reduce using rule 49 (expression -> expression NE expression .) ]
+  ! GT              [ reduce using rule 49 (expression -> expression NE expression .) ]
+  ! LE              [ reduce using rule 49 (expression -> expression NE expression .) ]
+  ! GE              [ reduce using rule 49 (expression -> expression NE expression .) ]
+  ! EQ              [ reduce using rule 49 (expression -> expression NE expression .) ]
+  ! NE              [ reduce using rule 49 (expression -> expression NE expression .) ]
+
+
+state 59
+
+    (50) expression -> LPAREN expression RPAREN .
+
+    COLON           reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    LT              reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    GT              reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    LE              reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    GE              reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    EQ              reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    NE              reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    RBRACKET        reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+    NEWLINE         reduce using rule 50 (expression -> LPAREN expression RPAREN .)
+
+
+state 60
+
+    (32) match_statement -> MATCH expression COLON NEWLINE . case_list
+    (33) case_list -> . case_block
+    (34) case_list -> . case_list case_block
+    (35) case_block -> . CASE expression COLON NEWLINE simple_statement
+    (36) case_block -> . CASE UNDERSCORE COLON NEWLINE simple_statement
+
+    CASE            shift and go to state 77
+
+    case_list                      shift and go to state 75
+    case_block                     shift and go to state 76
+
+state 61
+
+    (10) function_def -> DEF ID LPAREN param_list RPAREN . COLON NEWLINE function_body
+
+    COLON           shift and go to state 78
+
+
+state 62
+
+    (13) param_list -> param_list COMMA . ID
+
+    ID              shift and go to state 79
+
+
+state 63
+
+    (21) list_declaration -> ID ASSIGN LBRACKET element_list RBRACKET . NEWLINE
+
+    NEWLINE         shift and go to state 80
+
+
+state 64
+
+    (24) element_list -> element_list COMMA . expression
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 81
+
+state 65
+
+    (25) for_loop -> FOR ID IN range_call COLON . NEWLINE loop_body
+
+    NEWLINE         shift and go to state 82
+
+
+state 66
+
+    (26) range_call -> RANGE LPAREN . expression RPAREN
+    (27) range_call -> RANGE LPAREN . expression COMMA expression RPAREN
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 83
+
+state 67
+
+    (29) while_loop -> WHILE expression COLON NEWLINE loop_body .
+
+    NEWLINE         reduce using rule 29 (while_loop -> WHILE expression COLON NEWLINE loop_body .)
+    DEF             reduce using rule 29 (while_loop -> WHILE expression COLON NEWLINE loop_body .)
+    ID              reduce using rule 29 (while_loop -> WHILE expression COLON NEWLINE loop_body .)
+    FOR             reduce using rule 29 (while_loop -> WHILE expression COLON NEWLINE loop_body .)
+    WHILE           reduce using rule 29 (while_loop -> WHILE expression COLON NEWLINE loop_body .)
+    MATCH           reduce using rule 29 (while_loop -> WHILE expression COLON NEWLINE loop_body .)
+    $end            reduce using rule 29 (while_loop -> WHILE expression COLON NEWLINE loop_body .)
+
+
+state 68
+
+    (30) loop_body -> simple_statement .
+
+    NEWLINE         reduce using rule 30 (loop_body -> simple_statement .)
+    DEF             reduce using rule 30 (loop_body -> simple_statement .)
+    ID              reduce using rule 30 (loop_body -> simple_statement .)
+    FOR             reduce using rule 30 (loop_body -> simple_statement .)
+    WHILE           reduce using rule 30 (loop_body -> simple_statement .)
+    MATCH           reduce using rule 30 (loop_body -> simple_statement .)
+    $end            reduce using rule 30 (loop_body -> simple_statement .)
+
+
+state 69
+
+    (31) loop_body -> compound_statement .
+
+    NEWLINE         reduce using rule 31 (loop_body -> compound_statement .)
+    DEF             reduce using rule 31 (loop_body -> compound_statement .)
+    ID              reduce using rule 31 (loop_body -> compound_statement .)
+    FOR             reduce using rule 31 (loop_body -> compound_statement .)
+    WHILE           reduce using rule 31 (loop_body -> compound_statement .)
+    MATCH           reduce using rule 31 (loop_body -> compound_statement .)
+    $end            reduce using rule 31 (loop_body -> compound_statement .)
+
+
+state 70
+
+    (16) simple_statement -> PASS . NEWLINE
+
+    NEWLINE         shift and go to state 84
+
+
+state 71
+
+    (17) simple_statement -> RETURN . expression NEWLINE
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 85
+
+state 72
+
+    (18) simple_statement -> BREAK . NEWLINE
+
+    NEWLINE         shift and go to state 86
+
+
+state 73
+
+    (19) simple_statement -> CONTINUE . NEWLINE
+
+    NEWLINE         shift and go to state 87
+
+
+state 74
+
+    (20) compound_statement -> statement_list .
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . function_def
+    (5) statement -> . list_declaration
+    (6) statement -> . for_loop
+    (7) statement -> . while_loop
+    (8) statement -> . match_statement
+    (9) statement -> . NEWLINE
+    (10) function_def -> . DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body
+    (21) list_declaration -> . ID ASSIGN LBRACKET element_list RBRACKET NEWLINE
+    (25) for_loop -> . FOR ID IN range_call COLON NEWLINE loop_body
+    (29) while_loop -> . WHILE expression COLON NEWLINE loop_body
+    (32) match_statement -> . MATCH expression COLON NEWLINE case_list
+
+  ! shift/reduce conflict for NEWLINE resolved as shift
+  ! shift/reduce conflict for DEF resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for MATCH resolved as shift
+    $end            reduce using rule 20 (compound_statement -> statement_list .)
+    NEWLINE         shift and go to state 9
+    DEF             shift and go to state 10
+    ID              shift and go to state 11
+    FOR             shift and go to state 12
+    WHILE           shift and go to state 13
+    MATCH           shift and go to state 14
+
+  ! NEWLINE         [ reduce using rule 20 (compound_statement -> statement_list .) ]
+  ! DEF             [ reduce using rule 20 (compound_statement -> statement_list .) ]
+  ! ID              [ reduce using rule 20 (compound_statement -> statement_list .) ]
+  ! FOR             [ reduce using rule 20 (compound_statement -> statement_list .) ]
+  ! WHILE           [ reduce using rule 20 (compound_statement -> statement_list .) ]
+  ! MATCH           [ reduce using rule 20 (compound_statement -> statement_list .) ]
+
+    statement                      shift and go to state 15
+    function_def                   shift and go to state 4
+    list_declaration               shift and go to state 5
+    for_loop                       shift and go to state 6
+    while_loop                     shift and go to state 7
+    match_statement                shift and go to state 8
+
+state 75
+
+    (32) match_statement -> MATCH expression COLON NEWLINE case_list .
+    (34) case_list -> case_list . case_block
+    (35) case_block -> . CASE expression COLON NEWLINE simple_statement
+    (36) case_block -> . CASE UNDERSCORE COLON NEWLINE simple_statement
+
+    NEWLINE         reduce using rule 32 (match_statement -> MATCH expression COLON NEWLINE case_list .)
+    DEF             reduce using rule 32 (match_statement -> MATCH expression COLON NEWLINE case_list .)
+    ID              reduce using rule 32 (match_statement -> MATCH expression COLON NEWLINE case_list .)
+    FOR             reduce using rule 32 (match_statement -> MATCH expression COLON NEWLINE case_list .)
+    WHILE           reduce using rule 32 (match_statement -> MATCH expression COLON NEWLINE case_list .)
+    MATCH           reduce using rule 32 (match_statement -> MATCH expression COLON NEWLINE case_list .)
+    $end            reduce using rule 32 (match_statement -> MATCH expression COLON NEWLINE case_list .)
+    CASE            shift and go to state 77
+
+    case_block                     shift and go to state 88
+
+state 76
+
+    (33) case_list -> case_block .
+
+    CASE            reduce using rule 33 (case_list -> case_block .)
+    NEWLINE         reduce using rule 33 (case_list -> case_block .)
+    DEF             reduce using rule 33 (case_list -> case_block .)
+    ID              reduce using rule 33 (case_list -> case_block .)
+    FOR             reduce using rule 33 (case_list -> case_block .)
+    WHILE           reduce using rule 33 (case_list -> case_block .)
+    MATCH           reduce using rule 33 (case_list -> case_block .)
+    $end            reduce using rule 33 (case_list -> case_block .)
+
+
+state 77
+
+    (35) case_block -> CASE . expression COLON NEWLINE simple_statement
+    (36) case_block -> CASE . UNDERSCORE COLON NEWLINE simple_statement
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    UNDERSCORE      shift and go to state 90
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 89
+
+state 78
+
+    (10) function_def -> DEF ID LPAREN param_list RPAREN COLON . NEWLINE function_body
+
+    NEWLINE         shift and go to state 91
+
+
+state 79
+
+    (13) param_list -> param_list COMMA ID .
+
+    RPAREN          reduce using rule 13 (param_list -> param_list COMMA ID .)
+    COMMA           reduce using rule 13 (param_list -> param_list COMMA ID .)
+
+
+state 80
+
+    (21) list_declaration -> ID ASSIGN LBRACKET element_list RBRACKET NEWLINE .
+
+    NEWLINE         reduce using rule 21 (list_declaration -> ID ASSIGN LBRACKET element_list RBRACKET NEWLINE .)
+    DEF             reduce using rule 21 (list_declaration -> ID ASSIGN LBRACKET element_list RBRACKET NEWLINE .)
+    ID              reduce using rule 21 (list_declaration -> ID ASSIGN LBRACKET element_list RBRACKET NEWLINE .)
+    FOR             reduce using rule 21 (list_declaration -> ID ASSIGN LBRACKET element_list RBRACKET NEWLINE .)
+    WHILE           reduce using rule 21 (list_declaration -> ID ASSIGN LBRACKET element_list RBRACKET NEWLINE .)
+    MATCH           reduce using rule 21 (list_declaration -> ID ASSIGN LBRACKET element_list RBRACKET NEWLINE .)
+    $end            reduce using rule 21 (list_declaration -> ID ASSIGN LBRACKET element_list RBRACKET NEWLINE .)
+
+
+state 81
+
+    (24) element_list -> element_list COMMA expression .
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+    RBRACKET        reduce using rule 24 (element_list -> element_list COMMA expression .)
+    COMMA           reduce using rule 24 (element_list -> element_list COMMA expression .)
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+
+state 82
+
+    (25) for_loop -> FOR ID IN range_call COLON NEWLINE . loop_body
+    (30) loop_body -> . simple_statement
+    (31) loop_body -> . compound_statement
+    (16) simple_statement -> . PASS NEWLINE
+    (17) simple_statement -> . RETURN expression NEWLINE
+    (18) simple_statement -> . BREAK NEWLINE
+    (19) simple_statement -> . CONTINUE NEWLINE
+    (20) compound_statement -> . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . function_def
+    (5) statement -> . list_declaration
+    (6) statement -> . for_loop
+    (7) statement -> . while_loop
+    (8) statement -> . match_statement
+    (9) statement -> . NEWLINE
+    (10) function_def -> . DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body
+    (21) list_declaration -> . ID ASSIGN LBRACKET element_list RBRACKET NEWLINE
+    (25) for_loop -> . FOR ID IN range_call COLON NEWLINE loop_body
+    (29) while_loop -> . WHILE expression COLON NEWLINE loop_body
+    (32) match_statement -> . MATCH expression COLON NEWLINE case_list
+
+    PASS            shift and go to state 70
+    RETURN          shift and go to state 71
+    BREAK           shift and go to state 72
+    CONTINUE        shift and go to state 73
+    NEWLINE         shift and go to state 9
+    DEF             shift and go to state 10
+    ID              shift and go to state 11
+    FOR             shift and go to state 12
+    WHILE           shift and go to state 13
+    MATCH           shift and go to state 14
+
+    loop_body                      shift and go to state 92
+    simple_statement               shift and go to state 68
+    compound_statement             shift and go to state 69
+    statement_list                 shift and go to state 74
+    statement                      shift and go to state 3
+    function_def                   shift and go to state 4
+    list_declaration               shift and go to state 5
+    for_loop                       shift and go to state 6
+    while_loop                     shift and go to state 7
+    match_statement                shift and go to state 8
+
+state 83
+
+    (26) range_call -> RANGE LPAREN expression . RPAREN
+    (27) range_call -> RANGE LPAREN expression . COMMA expression RPAREN
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+    RPAREN          shift and go to state 93
+    COMMA           shift and go to state 94
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+
+state 84
+
+    (16) simple_statement -> PASS NEWLINE .
+
+    NEWLINE         reduce using rule 16 (simple_statement -> PASS NEWLINE .)
+    DEF             reduce using rule 16 (simple_statement -> PASS NEWLINE .)
+    ID              reduce using rule 16 (simple_statement -> PASS NEWLINE .)
+    FOR             reduce using rule 16 (simple_statement -> PASS NEWLINE .)
+    WHILE           reduce using rule 16 (simple_statement -> PASS NEWLINE .)
+    MATCH           reduce using rule 16 (simple_statement -> PASS NEWLINE .)
+    $end            reduce using rule 16 (simple_statement -> PASS NEWLINE .)
+    CASE            reduce using rule 16 (simple_statement -> PASS NEWLINE .)
+
+
+state 85
+
+    (17) simple_statement -> RETURN expression . NEWLINE
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+    NEWLINE         shift and go to state 95
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+
+state 86
+
+    (18) simple_statement -> BREAK NEWLINE .
+
+    NEWLINE         reduce using rule 18 (simple_statement -> BREAK NEWLINE .)
+    DEF             reduce using rule 18 (simple_statement -> BREAK NEWLINE .)
+    ID              reduce using rule 18 (simple_statement -> BREAK NEWLINE .)
+    FOR             reduce using rule 18 (simple_statement -> BREAK NEWLINE .)
+    WHILE           reduce using rule 18 (simple_statement -> BREAK NEWLINE .)
+    MATCH           reduce using rule 18 (simple_statement -> BREAK NEWLINE .)
+    $end            reduce using rule 18 (simple_statement -> BREAK NEWLINE .)
+    CASE            reduce using rule 18 (simple_statement -> BREAK NEWLINE .)
+
+
+state 87
+
+    (19) simple_statement -> CONTINUE NEWLINE .
+
+    NEWLINE         reduce using rule 19 (simple_statement -> CONTINUE NEWLINE .)
+    DEF             reduce using rule 19 (simple_statement -> CONTINUE NEWLINE .)
+    ID              reduce using rule 19 (simple_statement -> CONTINUE NEWLINE .)
+    FOR             reduce using rule 19 (simple_statement -> CONTINUE NEWLINE .)
+    WHILE           reduce using rule 19 (simple_statement -> CONTINUE NEWLINE .)
+    MATCH           reduce using rule 19 (simple_statement -> CONTINUE NEWLINE .)
+    $end            reduce using rule 19 (simple_statement -> CONTINUE NEWLINE .)
+    CASE            reduce using rule 19 (simple_statement -> CONTINUE NEWLINE .)
+
+
+state 88
+
+    (34) case_list -> case_list case_block .
+
+    CASE            reduce using rule 34 (case_list -> case_list case_block .)
+    NEWLINE         reduce using rule 34 (case_list -> case_list case_block .)
+    DEF             reduce using rule 34 (case_list -> case_list case_block .)
+    ID              reduce using rule 34 (case_list -> case_list case_block .)
+    FOR             reduce using rule 34 (case_list -> case_list case_block .)
+    WHILE           reduce using rule 34 (case_list -> case_list case_block .)
+    MATCH           reduce using rule 34 (case_list -> case_list case_block .)
+    $end            reduce using rule 34 (case_list -> case_list case_block .)
+
+
+state 89
+
+    (35) case_block -> CASE expression . COLON NEWLINE simple_statement
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+    COLON           shift and go to state 96
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+
+state 90
+
+    (36) case_block -> CASE UNDERSCORE . COLON NEWLINE simple_statement
+
+    COLON           shift and go to state 97
+
+
+state 91
+
+    (10) function_def -> DEF ID LPAREN param_list RPAREN COLON NEWLINE . function_body
+    (14) function_body -> . simple_statement
+    (15) function_body -> . compound_statement
+    (16) simple_statement -> . PASS NEWLINE
+    (17) simple_statement -> . RETURN expression NEWLINE
+    (18) simple_statement -> . BREAK NEWLINE
+    (19) simple_statement -> . CONTINUE NEWLINE
+    (20) compound_statement -> . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . function_def
+    (5) statement -> . list_declaration
+    (6) statement -> . for_loop
+    (7) statement -> . while_loop
+    (8) statement -> . match_statement
+    (9) statement -> . NEWLINE
+    (10) function_def -> . DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body
+    (21) list_declaration -> . ID ASSIGN LBRACKET element_list RBRACKET NEWLINE
+    (25) for_loop -> . FOR ID IN range_call COLON NEWLINE loop_body
+    (29) while_loop -> . WHILE expression COLON NEWLINE loop_body
+    (32) match_statement -> . MATCH expression COLON NEWLINE case_list
+
+    PASS            shift and go to state 70
+    RETURN          shift and go to state 71
+    BREAK           shift and go to state 72
+    CONTINUE        shift and go to state 73
+    NEWLINE         shift and go to state 9
+    DEF             shift and go to state 10
+    ID              shift and go to state 11
+    FOR             shift and go to state 12
+    WHILE           shift and go to state 13
+    MATCH           shift and go to state 14
+
+    function_body                  shift and go to state 98
+    simple_statement               shift and go to state 99
+    compound_statement             shift and go to state 100
+    statement_list                 shift and go to state 74
+    statement                      shift and go to state 3
+    function_def                   shift and go to state 4
+    list_declaration               shift and go to state 5
+    for_loop                       shift and go to state 6
+    while_loop                     shift and go to state 7
+    match_statement                shift and go to state 8
+
+state 92
+
+    (25) for_loop -> FOR ID IN range_call COLON NEWLINE loop_body .
+
+    NEWLINE         reduce using rule 25 (for_loop -> FOR ID IN range_call COLON NEWLINE loop_body .)
+    DEF             reduce using rule 25 (for_loop -> FOR ID IN range_call COLON NEWLINE loop_body .)
+    ID              reduce using rule 25 (for_loop -> FOR ID IN range_call COLON NEWLINE loop_body .)
+    FOR             reduce using rule 25 (for_loop -> FOR ID IN range_call COLON NEWLINE loop_body .)
+    WHILE           reduce using rule 25 (for_loop -> FOR ID IN range_call COLON NEWLINE loop_body .)
+    MATCH           reduce using rule 25 (for_loop -> FOR ID IN range_call COLON NEWLINE loop_body .)
+    $end            reduce using rule 25 (for_loop -> FOR ID IN range_call COLON NEWLINE loop_body .)
+
+
+state 93
+
+    (26) range_call -> RANGE LPAREN expression RPAREN .
+
+    COLON           reduce using rule 26 (range_call -> RANGE LPAREN expression RPAREN .)
+
+
+state 94
+
+    (27) range_call -> RANGE LPAREN expression COMMA . expression RPAREN
+    (37) expression -> . ID
+    (38) expression -> . NUMBER
+    (39) expression -> . STRING
+    (40) expression -> . expression PLUS expression
+    (41) expression -> . expression MINUS expression
+    (42) expression -> . expression TIMES expression
+    (43) expression -> . expression DIVIDE expression
+    (44) expression -> . expression LT expression
+    (45) expression -> . expression GT expression
+    (46) expression -> . expression LE expression
+    (47) expression -> . expression GE expression
+    (48) expression -> . expression EQ expression
+    (49) expression -> . expression NE expression
+    (50) expression -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    STRING          shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    expression                     shift and go to state 101
+
+state 95
+
+    (17) simple_statement -> RETURN expression NEWLINE .
+
+    NEWLINE         reduce using rule 17 (simple_statement -> RETURN expression NEWLINE .)
+    DEF             reduce using rule 17 (simple_statement -> RETURN expression NEWLINE .)
+    ID              reduce using rule 17 (simple_statement -> RETURN expression NEWLINE .)
+    FOR             reduce using rule 17 (simple_statement -> RETURN expression NEWLINE .)
+    WHILE           reduce using rule 17 (simple_statement -> RETURN expression NEWLINE .)
+    MATCH           reduce using rule 17 (simple_statement -> RETURN expression NEWLINE .)
+    $end            reduce using rule 17 (simple_statement -> RETURN expression NEWLINE .)
+    CASE            reduce using rule 17 (simple_statement -> RETURN expression NEWLINE .)
+
+
+state 96
+
+    (35) case_block -> CASE expression COLON . NEWLINE simple_statement
+
+    NEWLINE         shift and go to state 102
+
+
+state 97
+
+    (36) case_block -> CASE UNDERSCORE COLON . NEWLINE simple_statement
+
+    NEWLINE         shift and go to state 103
+
+
+state 98
+
+    (10) function_def -> DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body .
+
+    NEWLINE         reduce using rule 10 (function_def -> DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body .)
+    DEF             reduce using rule 10 (function_def -> DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body .)
+    ID              reduce using rule 10 (function_def -> DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body .)
+    FOR             reduce using rule 10 (function_def -> DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body .)
+    WHILE           reduce using rule 10 (function_def -> DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body .)
+    MATCH           reduce using rule 10 (function_def -> DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body .)
+    $end            reduce using rule 10 (function_def -> DEF ID LPAREN param_list RPAREN COLON NEWLINE function_body .)
+
+
+state 99
+
+    (14) function_body -> simple_statement .
+
+    NEWLINE         reduce using rule 14 (function_body -> simple_statement .)
+    DEF             reduce using rule 14 (function_body -> simple_statement .)
+    ID              reduce using rule 14 (function_body -> simple_statement .)
+    FOR             reduce using rule 14 (function_body -> simple_statement .)
+    WHILE           reduce using rule 14 (function_body -> simple_statement .)
+    MATCH           reduce using rule 14 (function_body -> simple_statement .)
+    $end            reduce using rule 14 (function_body -> simple_statement .)
+
+
+state 100
+
+    (15) function_body -> compound_statement .
+
+    NEWLINE         reduce using rule 15 (function_body -> compound_statement .)
+    DEF             reduce using rule 15 (function_body -> compound_statement .)
+    ID              reduce using rule 15 (function_body -> compound_statement .)
+    FOR             reduce using rule 15 (function_body -> compound_statement .)
+    WHILE           reduce using rule 15 (function_body -> compound_statement .)
+    MATCH           reduce using rule 15 (function_body -> compound_statement .)
+    $end            reduce using rule 15 (function_body -> compound_statement .)
+
+
+state 101
+
+    (27) range_call -> RANGE LPAREN expression COMMA expression . RPAREN
+    (40) expression -> expression . PLUS expression
+    (41) expression -> expression . MINUS expression
+    (42) expression -> expression . TIMES expression
+    (43) expression -> expression . DIVIDE expression
+    (44) expression -> expression . LT expression
+    (45) expression -> expression . GT expression
+    (46) expression -> expression . LE expression
+    (47) expression -> expression . GE expression
+    (48) expression -> expression . EQ expression
+    (49) expression -> expression . NE expression
+
+    RPAREN          shift and go to state 104
+    PLUS            shift and go to state 29
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 31
+    DIVIDE          shift and go to state 32
+    LT              shift and go to state 33
+    GT              shift and go to state 34
+    LE              shift and go to state 35
+    GE              shift and go to state 36
+    EQ              shift and go to state 37
+    NE              shift and go to state 38
+
+
+state 102
+
+    (35) case_block -> CASE expression COLON NEWLINE . simple_statement
+    (16) simple_statement -> . PASS NEWLINE
+    (17) simple_statement -> . RETURN expression NEWLINE
+    (18) simple_statement -> . BREAK NEWLINE
+    (19) simple_statement -> . CONTINUE NEWLINE
+
+    PASS            shift and go to state 70
+    RETURN          shift and go to state 71
+    BREAK           shift and go to state 72
+    CONTINUE        shift and go to state 73
+
+    simple_statement               shift and go to state 105
+
+state 103
+
+    (36) case_block -> CASE UNDERSCORE COLON NEWLINE . simple_statement
+    (16) simple_statement -> . PASS NEWLINE
+    (17) simple_statement -> . RETURN expression NEWLINE
+    (18) simple_statement -> . BREAK NEWLINE
+    (19) simple_statement -> . CONTINUE NEWLINE
+
+    PASS            shift and go to state 70
+    RETURN          shift and go to state 71
+    BREAK           shift and go to state 72
+    CONTINUE        shift and go to state 73
+
+    simple_statement               shift and go to state 106
+
+state 104
+
+    (27) range_call -> RANGE LPAREN expression COMMA expression RPAREN .
+
+    COLON           reduce using rule 27 (range_call -> RANGE LPAREN expression COMMA expression RPAREN .)
+
+
+state 105
+
+    (35) case_block -> CASE expression COLON NEWLINE simple_statement .
+
+    CASE            reduce using rule 35 (case_block -> CASE expression COLON NEWLINE simple_statement .)
+    NEWLINE         reduce using rule 35 (case_block -> CASE expression COLON NEWLINE simple_statement .)
+    DEF             reduce using rule 35 (case_block -> CASE expression COLON NEWLINE simple_statement .)
+    ID              reduce using rule 35 (case_block -> CASE expression COLON NEWLINE simple_statement .)
+    FOR             reduce using rule 35 (case_block -> CASE expression COLON NEWLINE simple_statement .)
+    WHILE           reduce using rule 35 (case_block -> CASE expression COLON NEWLINE simple_statement .)
+    MATCH           reduce using rule 35 (case_block -> CASE expression COLON NEWLINE simple_statement .)
+    $end            reduce using rule 35 (case_block -> CASE expression COLON NEWLINE simple_statement .)
+
+
+state 106
+
+    (36) case_block -> CASE UNDERSCORE COLON NEWLINE simple_statement .
+
+    CASE            reduce using rule 36 (case_block -> CASE UNDERSCORE COLON NEWLINE simple_statement .)
+    NEWLINE         reduce using rule 36 (case_block -> CASE UNDERSCORE COLON NEWLINE simple_statement .)
+    DEF             reduce using rule 36 (case_block -> CASE UNDERSCORE COLON NEWLINE simple_statement .)
+    ID              reduce using rule 36 (case_block -> CASE UNDERSCORE COLON NEWLINE simple_statement .)
+    FOR             reduce using rule 36 (case_block -> CASE UNDERSCORE COLON NEWLINE simple_statement .)
+    WHILE           reduce using rule 36 (case_block -> CASE UNDERSCORE COLON NEWLINE simple_statement .)
+    MATCH           reduce using rule 36 (case_block -> CASE UNDERSCORE COLON NEWLINE simple_statement .)
+    $end            reduce using rule 36 (case_block -> CASE UNDERSCORE COLON NEWLINE simple_statement .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PLUS in state 49 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 49 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 49 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 49 resolved as shift
+WARNING: shift/reduce conflict for LT in state 49 resolved as shift
+WARNING: shift/reduce conflict for GT in state 49 resolved as shift
+WARNING: shift/reduce conflict for LE in state 49 resolved as shift
+WARNING: shift/reduce conflict for GE in state 49 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 49 resolved as shift
+WARNING: shift/reduce conflict for NE in state 49 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 50 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 50 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 50 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 50 resolved as shift
+WARNING: shift/reduce conflict for LT in state 50 resolved as shift
+WARNING: shift/reduce conflict for GT in state 50 resolved as shift
+WARNING: shift/reduce conflict for LE in state 50 resolved as shift
+WARNING: shift/reduce conflict for GE in state 50 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 50 resolved as shift
+WARNING: shift/reduce conflict for NE in state 50 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 51 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 51 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 51 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 51 resolved as shift
+WARNING: shift/reduce conflict for LT in state 51 resolved as shift
+WARNING: shift/reduce conflict for GT in state 51 resolved as shift
+WARNING: shift/reduce conflict for LE in state 51 resolved as shift
+WARNING: shift/reduce conflict for GE in state 51 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 51 resolved as shift
+WARNING: shift/reduce conflict for NE in state 51 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 52 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 52 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 52 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 52 resolved as shift
+WARNING: shift/reduce conflict for LT in state 52 resolved as shift
+WARNING: shift/reduce conflict for GT in state 52 resolved as shift
+WARNING: shift/reduce conflict for LE in state 52 resolved as shift
+WARNING: shift/reduce conflict for GE in state 52 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 52 resolved as shift
+WARNING: shift/reduce conflict for NE in state 52 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 53 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 53 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 53 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 53 resolved as shift
+WARNING: shift/reduce conflict for LT in state 53 resolved as shift
+WARNING: shift/reduce conflict for GT in state 53 resolved as shift
+WARNING: shift/reduce conflict for LE in state 53 resolved as shift
+WARNING: shift/reduce conflict for GE in state 53 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 53 resolved as shift
+WARNING: shift/reduce conflict for NE in state 53 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 54 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 54 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 54 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 54 resolved as shift
+WARNING: shift/reduce conflict for LT in state 54 resolved as shift
+WARNING: shift/reduce conflict for GT in state 54 resolved as shift
+WARNING: shift/reduce conflict for LE in state 54 resolved as shift
+WARNING: shift/reduce conflict for GE in state 54 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 54 resolved as shift
+WARNING: shift/reduce conflict for NE in state 54 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 55 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 55 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 55 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 55 resolved as shift
+WARNING: shift/reduce conflict for LT in state 55 resolved as shift
+WARNING: shift/reduce conflict for GT in state 55 resolved as shift
+WARNING: shift/reduce conflict for LE in state 55 resolved as shift
+WARNING: shift/reduce conflict for GE in state 55 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 55 resolved as shift
+WARNING: shift/reduce conflict for NE in state 55 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 56 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 56 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 56 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 56 resolved as shift
+WARNING: shift/reduce conflict for LT in state 56 resolved as shift
+WARNING: shift/reduce conflict for GT in state 56 resolved as shift
+WARNING: shift/reduce conflict for LE in state 56 resolved as shift
+WARNING: shift/reduce conflict for GE in state 56 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 56 resolved as shift
+WARNING: shift/reduce conflict for NE in state 56 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 57 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 57 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 57 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 57 resolved as shift
+WARNING: shift/reduce conflict for LT in state 57 resolved as shift
+WARNING: shift/reduce conflict for GT in state 57 resolved as shift
+WARNING: shift/reduce conflict for LE in state 57 resolved as shift
+WARNING: shift/reduce conflict for GE in state 57 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 57 resolved as shift
+WARNING: shift/reduce conflict for NE in state 57 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 58 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 58 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 58 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 58 resolved as shift
+WARNING: shift/reduce conflict for LT in state 58 resolved as shift
+WARNING: shift/reduce conflict for GT in state 58 resolved as shift
+WARNING: shift/reduce conflict for LE in state 58 resolved as shift
+WARNING: shift/reduce conflict for GE in state 58 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 58 resolved as shift
+WARNING: shift/reduce conflict for NE in state 58 resolved as shift
+WARNING: shift/reduce conflict for NEWLINE in state 74 resolved as shift
+WARNING: shift/reduce conflict for DEF in state 74 resolved as shift
+WARNING: shift/reduce conflict for ID in state 74 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 74 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 74 resolved as shift
+WARNING: shift/reduce conflict for MATCH in state 74 resolved as shift

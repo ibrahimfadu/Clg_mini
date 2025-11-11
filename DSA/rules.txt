@@ -1,0 +1,39 @@
+General Guidelines
+
+·       Teams must strictly work on the problem statements assigned by their respective section faculty.
+
+·       The mini-project implementation, including all functionalities mentioned in the problem statement, must be completed by 07/11/2025.
+
+·       Implementation must be done only in the C programming language (use of any IDE is allowed).
+
+·       It is compulsory to use multi-file approach
+
+a)      Header files (.h) — contain function declarations, macros, constants, and structure definitions.
+
+b)      Source files (.c) — contain the actual function definitions (implementations).
+
+c)      Main file (main.c) — contains the main() function and coordinates the program.
+
+·       GUI is optional; however, students are encouraged to learn and implement it.
+Coding practices
+
+·       Use dynamic memory allocation judiciously
+
+·       Avoid using global variables
+
+·       Handle boundary conditions and edge cases effectively.
+
+·       Check return values of all functions.
+
+·       Check for memory leaks and dangling pointers
+
+·       Follow proper naming conventions for functions and variables
+
+
+Use atleast one linear and one non-linear DS  (can use as many as you want)
+
+
+Food Delivery Platform Simulation – Model orders, restaurant preparation, and delivery assignments to minimize delivery time	assignDeliveryAgent(),
+prepareOrder(),
+trackOrder(),
+generateReport()
