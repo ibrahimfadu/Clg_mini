@@ -1,124 +1,104 @@
 import ply.lex as lex
 
 # List of token names
+# Add COMMA to tokens list
 tokens = (
-    'DEF',
-    'ID',
-    'NUMBER',
-    'STRING',
-    'LPAREN',
-    'RPAREN',
-    'LBRACKET',
-    'RBRACKET',
-    'LBRACE',
-    'RBRACE',
-    'COLON',
-    'COMMA',
-    'ASSIGN',
-    'FOR',
-    'IN',
-    'WHILE',
-    'RANGE',
-    'MATCH',
-    'CASE',
-    'UNDERSCORE',
-    'PLUS',
-    'MINUS',
-    'TIMES',
-    'DIVIDE',
-    'LT',
-    'GT',
-    'LE',
-    'GE',
-    'EQ',
-    'NE',
-    'PASS',
-    'BREAK',
-    'CONTINUE',
-    'RETURN',
-    'INDENT',
-    'DEDENT',
-    'NEWLINE',
+    'DO', 'WHILE', 'FOR', 'IF', 'ELSE', 'SWITCH', 'CASE', 'DEFAULT', 'BREAK',
+    'RETURN', 'INT', 'VOID', 'IDENTIFIER', 'NUMBER',
+    'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'SEMI', 'COLON', 'COMMA',
+    'PLUS', 'MINUS', 'MULT', 'DIV', 'ASSIGN',
+    'EQ', 'NE', 'LT', 'LE', 'GT', 'GE'
 )
 
-# Reserved words
-reserved = {
-    'def': 'DEF',
-    'for': 'FOR',
-    'in': 'IN',
-    'while': 'WHILE',
-    'range': 'RANGE',
-    'match': 'MATCH',
-    'case': 'CASE',
-    'pass': 'PASS',
-    'break': 'BREAK',
-    'continue': 'CONTINUE',
-    'return': 'RETURN',
-}
+# Add comma rule
+t_COMMA = r','
 
-# Token rules
+# Regular expression rules for simple tokens
+t_DO = r'do'
+t_WHILE = r'while'
+t_FOR = r'for'
+t_IF = r'if'
+t_ELSE = r'else'
+t_SWITCH = r'switch'
+t_CASE = r'case'
+t_DEFAULT = r'default'
+t_BREAK = r'break'
+t_RETURN = r'return'
+t_INT = r'int'
+t_VOID = r'void'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-t_LBRACKET = r'\['
-t_RBRACKET = r'\]'
 t_LBRACE = r'\{'
 t_RBRACE = r'\}'
+t_SEMI = r';'
 t_COLON = r':'
-t_COMMA = r','
-t_ASSIGN = r'='
 t_PLUS = r'\+'
 t_MINUS = r'-'
-t_TIMES = r'\*'
-t_DIVIDE = r'/'
-t_LT = r'<'
-t_GT = r'>'
-t_LE = r'<='
-t_GE = r'>='
+t_MULT = r'\*'
+t_DIV = r'/'
+t_ASSIGN = r'='
 t_EQ = r'=='
 t_NE = r'!='
-t_UNDERSCORE = r'_'
+t_LT = r'<'
+t_LE = r'<='
+t_GT = r'>'
+t_GE = r'>='
 
-def t_ID(t):
+# A regular expression rule for identifiers
+def t_IDENTIFIER(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = reserved.get(t.value, 'ID')
+    # Check if the identifier is a reserved keyword
+    reserved = {
+        'do': 'DO',
+        'while': 'WHILE',
+        'for': 'FOR',
+        'if': 'IF',
+        'else': 'ELSE',
+        'switch': 'SWITCH',
+        'case': 'CASE',
+        'default': 'DEFAULT',
+        'break': 'BREAK',
+        'return': 'RETURN',
+        'int': 'INT',
+        'void': 'VOID'
+    }
+    t.type = reserved.get(t.value, 'IDENTIFIER')
     return t
 
+# A regular expression rule for numbers
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
-def t_STRING(t):
-    r'\"([^\\\n]|(\\.))*?\"'
-    return t
-
-def t_NEWLINE(t):
+# Define a rule to track line numbers (useful for error messages)
+def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
-    return t
 
-# Ignore spaces and tabs
+# A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
 
-# Track indentation (simplified)
-indent_stack = [0]
-
+# Error handling rule
 def t_error(t):
-    print(f"Illegal character '{t.value[0]}'")
+    print(f"Illegal character '{t.value[0]}' at line {t.lineno}")
     t.lexer.skip(1)
 
 # Build the lexer
 lexer = lex.lex()
 
-# Test function
+# Test data (optional, for individual testing)
 if __name__ == '__main__':
-    data = '''
-def add(x, y):
-    return x + y
-
-for i in range(10):
-    pass
-'''
+    data = """
+    int main() {
+        int x = 5;
+        if (x > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    """
     lexer.input(data)
     for tok in lexer:
         print(tok)
