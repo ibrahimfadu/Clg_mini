@@ -4,10 +4,11 @@
 #include <time.h>
 #include "../include/delivery.h"
 
-/* ---------- Helper ---------- */
+// Number Generator
 static int rand_range(int min, int max) {
     return min + rand() % (max - min + 1);
 }
+
 
 /* ---------- Platform ---------- */
 Platform* init_platform(void) {
@@ -17,13 +18,13 @@ Platform* init_platform(void) {
     p->ready      = queue_create();
     p->in_transit = bst_create();
     p->next_order_id = 1000;
-    p->next_agent_id = 1;
+    p->next_agent_id = 1; 
     srand((unsigned)time(NULL));
     return p;
 }
 
 /* ---- place_order ---- */
-void place_order(Platform *p, const char *rest, const char *cust, int prep_mins) {
+void place_order(Platform *p, const char *rest, const char *cust, int prep_mins){
     if (!p || !p->pending) return;
     Order o = {0};
     o.order_id = p->next_order_id++;
@@ -43,8 +44,7 @@ void prepareOrder(Platform *p) {
     }
     Order o = queue_dequeue(p->pending);
     /* Simulate preparation time */
-    printf("Preparing order %d... (%d min)\n", o.order_id, o.prep_time);
-    /* In a real system you would sleep(o.prep_time*60) */
+    printf("Preparing order %d... (%d min)\n", o.order_id, o.prep_time); /* In a real system you would sleep(o.prep_time*60) */
     queue_enqueue(p->ready, o);
     printf("Order %d is READY for delivery.\n", o.order_id);
 }

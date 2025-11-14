@@ -37,10 +37,17 @@ int main(void) {
             case 2: prepareOrder(plat);           break;
             case 3: assignDeliveryAgent(plat);    break;
             case 4: {
-                int id; printf("Order ID: "); scanf("%d", &id);
-                trackOrder(plat, id);
-                break;
-            }
+                      int id;
+                      printf("Order ID: ");
+                      if (scanf("%d", &id) != 1) {      // handle invalid input
+                        printf("Invalid ID!\n");
+                        while(getchar()!='\n');       // clear buffer
+                        break;
+                      }
+    while(getchar()!='\n');           // flush leftover '\n'
+    trackOrder(plat, id);
+    break;
+}
             case 5: generateReport(plat);         break;
             case 0: printf("Good-bye!\n");        break;
             default: printf("Invalid option.\n"); break;

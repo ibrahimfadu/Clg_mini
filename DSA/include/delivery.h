@@ -14,11 +14,11 @@ typedef struct Platform {
 
 /* API (exactly the functions asked for) */
 Platform* init_platform(void);
-void      place_order(Platform *p, const char *rest, const char *cust, int prep_mins);
-void      prepareOrder(Platform *p);
-void      assignDeliveryAgent(Platform *p);
-void      trackOrder(Platform *p, int order_id);
-void      generateReport(Platform *p);
-void      destroy_platform(Platform *p);
+void place_order(Platform *p, const char *rest, const char *cust, int prep_mins);
+void prepareOrder(Platform *p);
+void assignDeliveryAgent(Platform *p);
+void trackOrder(Platform *p, int order_id);
+void generateReport(Platform *p);
+void destroy_platform(Platform *p);
 
 #endif

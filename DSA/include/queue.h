@@ -19,7 +19,8 @@ typedef struct Queue {
     int    size;
 } Queue;
 
-/* API */
+
+
 Queue*  queue_create(void);
 int     queue_is_empty(Queue *q);
 void    queue_enqueue(Queue *q, Order o);
