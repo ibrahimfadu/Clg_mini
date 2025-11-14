@@ -1,4 +1,4 @@
-Food Delivery Platform – C Project
+# Food Delivery Platform – C Project
 
 This project simulates a simplified Zomato/Swiggy-like food delivery platform using Data Structures in C.
 It demonstrates real-world usage of:
