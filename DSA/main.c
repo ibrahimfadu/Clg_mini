@@ -6,6 +6,26 @@
 void clear(void) { system("clear||cls"); }
 void pause(void) { printf("Press Enter to continue..."); getchar(); }
 
+static int randu(int min, int max) {
+    return min + rand() % (max - min + 1);
+}
+
+void findAR(Platform *p) {
+    if (!p || !p->in_transit || !p->in_transit->root) {
+        printf("No deliveries in transit.\n");
+        return;
+    }
+    int eta = p->in_transit->root->data.eta;
+    int eta2=randu(10,100);
+    printf("path One ETA: %d min\n", eta);
+    printf("path Two ETA: %d min\n", eta2);
+    if(eta<eta2){
+      printf("Path One is form fast");
+    }
+    else {
+      printf("Path Two is form fast"); 
+    }
+}
 int main(void) {
     Platform *plat = init_platform();
     if (!plat) { perror("init"); return EXIT_FAILURE; }
@@ -36,6 +56,7 @@ int main(void) {
             }
             case 2: prepareOrder(plat);           break;
             case 3: assignDeliveryAgent(plat);    break;
+            case 6: findAR(plat);
             case 4: {
                       int id;
                       printf("Order ID: ");

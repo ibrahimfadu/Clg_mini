@@ -9,6 +9,8 @@ static int rand_range(int min, int max) {
     return min + rand() % (max - min + 1);
 }
 
+//findAlternateRoute
+//getFastestRoute
 
 /* ---------- Platform ---------- */
 Platform* init_platform(void) {
