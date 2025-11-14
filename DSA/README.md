@@ -1,101 +1,80 @@
 # Food Delivery Platform – C Project
 
-This project simulates a simplified Zomato/Swiggy-like food delivery platform using Data Structures in C.
-It demonstrates real-world usage of:
+This project simulates a simple **food delivery platform** like Zomato/Swiggy using **Data Structures in C**.  
+It demonstrates real-world usage of queues, BSTs, structures, and modular programming.
 
-Queues → handling pending & ready orders
+---
 
-Binary Search Tree (BST) → tracking in-transit orders sorted by ETA
+## 📌 Features
 
-Structures → Orders, Delivery Agents, Platform
-
-Dynamic Memory Allocation
-
-Modular Programming (multiple C files)
-
-📌 Features
-✔ Place Order
-
+### ✔ Place Order
 User enters:
+- Restaurant name  
+- Customer name  
+- Preparation time  
 
-Restaurant name
+Order goes into **Pending Queue**.
 
-Customer name
+### ✔ Prepare Order
+Moves the first pending order into **Ready Queue**.
 
-Preparation time
+### ✔ Assign Delivery Agent
+Moves one order from **Ready → In-Transit BST** and assigns:
+- Random delivery agent ID  
+- Random ETA (10–45 min)
 
-Order is added to Pending Queue.
+BST stores orders **sorted by ETA**.
 
-✔ Prepare Order
+### ✔ Track Order
+Searches:
+- Ready Queue  
+- In-Transit BST  
 
-Moves one order from Pending → Ready
-(simulates cooking/preparation).
+Then prints current status.
 
-✔ Assign Delivery Agent
+### ✔ Generate Platform Report
+Shows:
+- Total pending orders  
+- Total ready orders  
+- In-transit orders (sorted by ETA)
 
-Moves one order from Ready → BST (In-Transit) and assigns:
+### ✔ Cleanup
+Frees all dynamic memory used by queues and BST.
 
-Random delivery agent ID
+---
 
-Random ETA (10–45 minutes)
-
-BST stores orders sorted by ETA, so the fastest orders appear first.
-
-✔ Track Order
-
-Searches both:
-
-Ready Queue
-
-In-Transit BST
-
-Shows the current status.
-
-✔ Platform Report
-
-Displays total:
-
-Pending orders
-
-Ready orders
-
-In-transit orders (in sorted ETA order)
-
-✔ Cleanup
-
-Free all dynamic memory (queues + BST).
-
-📁 Project Structure
-
+## 📁 Project Structure
 
 project/
 │
 ├── include/
-│   ├── delivery.h
-│   ├── queue.h
-│   └── bst.h
+│ ├── delivery.h
+│ ├── queue.h
+│ └── bst.h
 │
 ├── src/
-│   ├── delivery.c
-│   ├── queue.c
-│   ├── bst.c
+│ ├── delivery.c
+│ ├── queue.c
+│ ├── bst.c
 │
 ├── main.c
 └── README.md
 
 
-How to Compile
 
-Make sure you are inside the project folder.
+---
 
-Compile all .c files:
+## 🚀 How to Compile
 
+Run this command inside your project folder:
+
+```sh
 gcc -o app src/*.c main.c -I include
-
 
 Run the program:
 
 ./app
+
 
 🧠 Data Structures Used
 Queue
@@ -116,15 +95,11 @@ is_empty
 
 size
 
-BST (Binary Search Tree)
+Binary Search Tree (BST)
 
 Used for:
 
-In-transit delivery tracking
-
-Sorted by:
-
-ETA (Estimated Time of Arrival)
+In-transit deliveries sorted by ETA
 
 Operations:
 
@@ -136,16 +111,3 @@ inorder traversal
 
 delete
 
-🔧 Future Enhancements
-
-Delivery completion
-
-Distance calculation
-
-Alternative route suggestion
-
-Multiple agents
-
-File storage for orders
-
-Graph-based routing system
